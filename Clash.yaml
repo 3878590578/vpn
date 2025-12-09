@@ -1,0 +1,272 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:6170
+ipv6: true
+unified-delay: false
+tcp-concurrent: true
+global-client-fingerprint: chrome
+hosts:
+  mtalk.google.com: 108.177.125.188
+experimental:
+  ignore-resolve-fail: true
+cfw-latency-url: https://connectivitycheck.gstatic.com/generate_204
+cfw-latency-type: 1
+cfw-latency-timeout: 5000
+cfw-conn-break-strategy: true
+clash-for-android:
+  append-system-dns: false
+  ui-subtitle-pattern: "[一-龥]{2,4}"
+url-rewrite:
+  - ^https?:\/\/(www.)?(g|google)\.cn https://www.google.com 302
+  - ^https?:\/\/(ditu|maps).google\.cn https://maps.google.com 302
+sniffer:
+  enable: true
+  sniff:
+    TLS: {ports: [1-65535], override-destination: true}
+    HTTP: {ports: [1-65535], override-destination: true}
+    QUIC: {ports: [1-65535], override-destination: true}
+  skip-domain:
+    - Mijia Cloud
+    - dlg.io.mi.com
+    - +.push.apple.com
+  parse-pure-ip: false
+  force-dns-mapping: true
+  override-destination: true
+dns:
+  ipv6: false
+  enable: true
+  prefer-h3: true
+  listen: 0.0.0.0:1053
+  enhanced-mode: fake-ip
+  use-hosts: false
+  default-nameserver: [119.28.28.28, 119.29.29.29, 223.5.5.5, 223.6.6.6]
+  nameserver: [119.29.29.29, 223.5.5.5, tls://dot.pub:853, tls://dns.alidns.com:853, https://doh.pub:443/dns-query, https://dns.alidns.com:443/dns-query]
+  fallback: [https://dns.cloudflare.com/dns-query, https://doh.dns.sb/dns-query, tls://8.8.4.4:853]
+  fallback-filter: {geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32]}
+  fake-ip-range: 198.18.0.1/15
+  fake-ip-filter: ["*.lan", "*.localdomain", "*.example", "*.invalid", "*.localhost", "*.test", "*.local"]
+proxies:
+  - {name: HK AMAZON 01 @SubscriptionShare, server: 95.40.18.27, port: 20002, type: ss, cipher: aes-256-gcm, password: c5d45d2b-c425-4b24-8794-613b831d5f0c, udp: true, tfo: true}
+  - {name: HK Vertex 02 @SubscriptionShare, server: 103.181.165.243, port: 26014, type: vmess, uuid: e3539c1c-e32d-305e-96b2-3c184b644a90, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: HK DMIT 03 @SubscriptionShare, server: 36.141.116.183, port: 40382, type: ss, cipher: 2022-blake3-aes-128-gcm, password: ZTc1ZDIxMzg1OGE1ZjYyOQ==:ODg2MjM4MWEtMWU2Mi00Nw==, udp: true, tfo: true}
+  - {name: HK AMAZON 04 @SubscriptionShare, server: 43.198.114.230, port: 11689, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 05 @SubscriptionShare, server: 95.40.113.38, port: 15098, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK CUSTOMER 06 @SubscriptionShare, server: 27.150.132.115, port: 3602, type: ss, cipher: rc4-md5, password: RenzheCloudSS, plugin: obfs, plugin-opts: {mode: http, host: d1bf8290613.microsoft.com}, udp: true, tfo: true}
+  - {name: HK AMAZON 07 @SubscriptionShare, server: 18.163.180.35, port: 15099, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 08 @SubscriptionShare, server: 18.166.63.103, port: 19865, type: vmess, uuid: c5d45d2b-c425-4b24-8794-613b831d5f0c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: bgroup.node4.v.nodelist-airport.com}}, udp: true, tfo: true}
+  - {name: HK HKT 09 @SubscriptionShare, server: 42.98.174.88, port: 443, type: hysteria2, password: 279b8588-616b-11ed-a8bf-f23c91cfbbc9, sni: b8141006-t6t0g0-t9lm1q-1p1b.hk2.hyhuawei.com, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: HK AMAZON 10 @SubscriptionShare, server: 18.162.55.49, port: 50005, type: ss, cipher: aes-256-gcm, password: c5d45d2b-c425-4b24-8794-613b831d5f0c, udp: true, tfo: true}
+  - {name: HK AMAZON 11 @SubscriptionShare, server: 54.46.13.47, port: 19888, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 12 @SubscriptionShare, server: 95.40.116.253, port: 16888, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 13 @SubscriptionShare, server: 18.167.96.1, port: 15099, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 14 @SubscriptionShare, server: 18.166.65.99, port: 36888, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 15 @SubscriptionShare, server: 18.167.121.84, port: 11688, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 16 @SubscriptionShare, server: 18.167.94.71, port: 15098, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 17 @SubscriptionShare, server: 43.198.139.79, port: 11688, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 18 @SubscriptionShare, server: 95.40.20.37, port: 15098, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 19 @SubscriptionShare, server: 18.166.51.22, port: 36888, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: HK AMAZON 20 @SubscriptionShare, server: 18.163.192.75, port: 11688, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: SG AMAZON 01 @SubscriptionShare, server: 18.142.243.37, port: 18241, type: vmess, uuid: c5d45d2b-c425-4b24-8794-613b831d5f0c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: SG Akamai 02 @SubscriptionShare, server: 183.236.97.150, port: 40381, type: ss, cipher: 2022-blake3-aes-128-gcm, password: ZTc1ZDIxMzg1OGE1ZjYyOQ==:ODg2MjM4MWEtMWU2Mi00Nw==, udp: true, tfo: true}
+  - {name: SG Akari 03 @SubscriptionShare, server: 27.150.132.116, port: 6602, type: ss, cipher: rc4-md5, password: RenzheCloudSS, plugin: obfs, plugin-opts: {mode: http, host: d1bf8290613.microsoft.com}, udp: true, tfo: true}
+  - {name: SG AMAZON 04 @SubscriptionShare, server: 18.141.229.110, port: 40000, type: vmess, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /bby, headers: {Host: ml01.333984.xyz}}, udp: true, tfo: true}
+  - {name: SG AMAZON 05 @SubscriptionShare, server: 54.169.211.85, port: 20002, type: ss, cipher: aes-256-gcm, password: c5d45d2b-c425-4b24-8794-613b831d5f0c, udp: true, tfo: true}
+  - {name: SG AMAZON 06 @SubscriptionShare, server: 54.151.160.21, port: 50001, type: ss, cipher: aes-256-gcm, password: c5d45d2b-c425-4b24-8794-613b831d5f0c, udp: true, tfo: true}
+  - {name: SG AMAZON 07 @SubscriptionShare, server: 54.169.212.237, port: 40402, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: SG ORACLE 08 @SubscriptionShare, server: 103.181.165.243, port: 26022, type: vmess, uuid: e3539c1c-e32d-305e-96b2-3c184b644a90, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: SG AMAZON 09 @SubscriptionShare, server: 13.250.17.118, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: Jqwg_L2lzNEBWCaH4oyqbw7KfqxtOA0TQXtxTaAU1nU, short-id: aec0af41}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: SG Amazon 10 @SubscriptionShare, server: 13.212.192.47, port: 40000, type: vmess, uuid: 2dcbbfcd-8bcd-4827-9bec-d90949b2ca7d, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /bby, headers: {Host: ml02.333984.xyz}}, udp: true, tfo: true}
+  - {name: SG AMAZON 11 @SubscriptionShare, server: 13.212.213.234, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: Jqwg_L2lzNEBWCaH4oyqbw7KfqxtOA0TQXtxTaAU1nU, short-id: aec0af41}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: SG AMAZON 12 @SubscriptionShare, server: 13.212.240.60, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: zmQlybXu8iCiAhwghmKa85-_2VQvjV51waoBp6A2YU8, short-id: 66739b1d}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: SG AMAZON 13 @SubscriptionShare, server: 47.129.159.70, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: zmQlybXu8iCiAhwghmKa85-_2VQvjV51waoBp6A2YU8, short-id: 66739b1d}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: SG AMAZON 14 @SubscriptionShare, server: 13.212.21.13, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: Ci3DvH4eTCb7eqYRg1bSsPcV1iJfNHUrOOnkAjr7gV0, short-id: 2873189a}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 01 @SubscriptionShare, server: 13.113.144.54, port: 20230, type: vless, tls: true, packet-encoding: xudp, uuid: 0bfa2050-b165-4156-859c-70f36d300dce, servername: www.nvidia.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: tj}, reality-opts: {public-key: lbOfuIKCBPcQH4AEnwnPw1LNxWrl-Bul6KU99H240Fc, short-id: abae4722}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 02 @SubscriptionShare, server: 3.112.203.41, port: 20230, type: vless, tls: true, packet-encoding: xudp, uuid: 0bfa2050-b165-4156-859c-70f36d300dce, servername: www.nvidia.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: tj}, reality-opts: {public-key: yNOemxnmT-HQ2HiR9fdHSN2B8HpHsRyMIsir_iAlaHE, short-id: 5c3c9f11}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP SKY 03 @SubscriptionShare, server: 103.181.165.243, port: 26008, type: vmess, uuid: e3539c1c-e32d-305e-96b2-3c184b644a90, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 04 @SubscriptionShare, server: 13.231.190.65, port: 50423, type: vmess, uuid: c5d45d2b-c425-4b24-8794-613b831d5f0c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP Akari 05 @SubscriptionShare, server: 27.150.132.116, port: 4604, type: ss, cipher: rc4-md5, password: RenzheCloudSS, plugin: obfs, plugin-opts: {mode: http, host: d1bf8290613.microsoft.com}, udp: true, tfo: true}
+  - {name: JP AMAZON 06 @SubscriptionShare, server: 13.231.133.36, port: 20230, type: vless, tls: true, packet-encoding: xudp, uuid: 0bfa2050-b165-4156-859c-70f36d300dce, servername: www.nvidia.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: tj}, reality-opts: {public-key: 4DQqVav-gK4Y1cMDDt4qyVpQf0GB6NkPgCPnjwude3c, short-id: d3b6f0c3}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 07 @SubscriptionShare, server: 54.178.23.234, port: 20230, type: trojan, password: 0bfa2050-b165-4156-859c-70f36d300dce, sni: www.alibaba.com, skip-cert-verify: true, network: ws, ws-opts: {path: "", headers: {Host: www.alibaba.com}}, udp: true, tfo: true}
+  - {name: JP AMAZON 08 @SubscriptionShare, server: 54.250.174.236, port: 15199, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: JP AMAZON 09 @SubscriptionShare, server: 13.114.118.145, port: 15099, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: JP Amazon 10 @SubscriptionShare, server: 52.197.12.73, port: 20230, type: trojan, password: 8c92b985-02fc-4bc1-8cd7-a12e5aae243b, sni: www.alibaba.com, skip-cert-verify: true, network: ws, ws-opts: {path: "", headers: {Host: www.alibaba.com}}, udp: true, tfo: true}
+  - {name: JP AMAZON 11 @SubscriptionShare, server: 54.238.244.90, port: 19882, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: JP NTT 12 @SubscriptionShare, server: 18.183.81.86, port: 21888, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: JP Akamai 13 @SubscriptionShare, server: 183.236.97.150, port: 40385, type: ss, cipher: 2022-blake3-aes-128-gcm, password: ZTc1ZDIxMzg1OGE1ZjYyOQ==:ODg2MjM4MWEtMWU2Mi00Nw==, udp: true, tfo: true}
+  - {name: JP AMAZON 14 @SubscriptionShare, server: 54.248.146.243, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: 4DQqVav-gK4Y1cMDDt4qyVpQf0GB6NkPgCPnjwude3c, short-id: d3b6f0c3}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 15 @SubscriptionShare, server: 43.206.235.165, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: bIgrybTEILwGmrQS956HzrdYjqzeUGK972q8Zevqrh8, short-id: e80d3a89}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 16 @SubscriptionShare, server: 13.230.191.15, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: bIgrybTEILwGmrQS956HzrdYjqzeUGK972q8Zevqrh8, short-id: e80d3a89}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 17 @SubscriptionShare, server: 18.181.174.38, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: bIgrybTEILwGmrQS956HzrdYjqzeUGK972q8Zevqrh8, short-id: e80d3a89}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 18 @SubscriptionShare, server: 13.231.34.54, port: 36885, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: JP AMAZON 19 @SubscriptionShare, server: 18.183.96.55, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: wLktBnGvBGFY-N8LCTB5gII2ulgiJBtSYBj33iboKhA, short-id: 0df23482}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: JP AMAZON 20 @SubscriptionShare, server: 18.182.53.112, port: 15099, type: ss, cipher: aes-256-gcm, password: 05d1a3ab-2ca8-42b2-8f21-527695250017, udp: true, tfo: true}
+  - {name: US VCL 01 @SubscriptionShare, server: 103.181.165.243, port: 26004, type: vmess, uuid: e3539c1c-e32d-305e-96b2-3c184b644a90, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US AMAZON 02 @SubscriptionShare, server: 54.149.198.6, port: 20002, type: ss, cipher: aes-256-gcm, password: c5d45d2b-c425-4b24-8794-613b831d5f0c, udp: true, tfo: true}
+  - {name: US AS 03 @SubscriptionShare, server: 175.29.22.36, port: 30808, type: vmess, uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484, alterId: 2, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US AMAZON 04 @SubscriptionShare, server: 35.93.58.23, port: 41331, type: vmess, uuid: c5d45d2b-c425-4b24-8794-613b831d5f0c, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: bgroup.node5.v.nodelist-airport.com}}, udp: true, tfo: true}
+  - {name: US AS 05 @SubscriptionShare, server: 175.29.22.36, port: 30829, type: vmess, uuid: cbb3f877-d1fb-344c-87a9-d153bffd5484, alterId: 2, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US MULTA 06 @SubscriptionShare, server: 104.16.63.199, port: 2052, type: vmess, uuid: e6447786-8c85-443c-8017-7feaa673ff45, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /, headers: {Host: us7.123417.xyz}}, udp: true, tfo: true}
+  - {name: US ORACLE 07 @SubscriptionShare, server: 172.67.184.138, port: 443, type: trojan, password: e19d5b93-67b1-4af7-b578-ecd46aac69a0, skip-cert-verify: true, network: ws, ws-opts: {path: ""}, udp: true, tfo: true}
+  - {name: US Amazon 08 @SubscriptionShare, server: 35.93.220.206, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: wLktBnGvBGFY-N8LCTB5gII2ulgiJBtSYBj33iboKhA, short-id: 0df23482}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US AMAZON 09 @SubscriptionShare, server: 34.220.224.21, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 2dcbbfcd-8bcd-4827-9bec-d90949b2ca7d, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: wLktBnGvBGFY-N8LCTB5gII2ulgiJBtSYBj33iboKhA, short-id: 0df23482}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US AMAZON 10 @SubscriptionShare, server: 34.219.243.9, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: wLktBnGvBGFY-N8LCTB5gII2ulgiJBtSYBj33iboKhA, short-id: 0df23482}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US AMAZON 11 @SubscriptionShare, server: 44.255.42.48, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: UpF-zQLrI4r8g1yRF65vs8h1GdPrHcJ3z7NI16GU5mU, short-id: 2f85dd87}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US AMAZON 12 @SubscriptionShare, server: 34.219.223.107, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: 7wOM3o0jTVZsr3Qjfu1QqBQ1e4gsbm9LGlnNjTfWzAs, short-id: 1fdd5d08}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US AMAZON 13 @SubscriptionShare, server: 44.244.63.187, port: 20230, type: trojan, password: 8c92b985-02fc-4bc1-8cd7-a12e5aae243b, sni: www.alibaba.com, skip-cert-verify: true, network: ws, ws-opts: {path: "", headers: {Host: www.alibaba.com}}, udp: true, tfo: true}
+  - {name: US AMAZON 14 @SubscriptionShare, server: 34.219.84.204, port: 20230, type: vless, tls: true, packet-encoding: xudp, uuid: 0bfa2050-b165-4156-859c-70f36d300dce, servername: www.nvidia.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: tj}, reality-opts: {public-key: zWY5WwfH-Q8xvLZAr28WjRVk05L4WCp4B7F1lWPM0A8, short-id: c1839f26}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: US BrainStorm 15 @SubscriptionShare, server: 183.60.254.163, port: 41317, type: vmess, uuid: 82539eb7-18c8-48d0-bb9c-55d1b6e47f59, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, network: ws, ws-opts: {path: /obj, headers: {Host: img14.360buyimg.com}}, udp: true, tfo: true}
+  - {name: TW DCBG 01 @SubscriptionShare, server: 103.181.165.243, port: 26060, type: vmess, uuid: e3539c1c-e32d-305e-96b2-3c184b644a90, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: TW DCBG 02 @SubscriptionShare, server: 183.236.97.24, port: 40380, type: ss, cipher: 2022-blake3-aes-128-gcm, password: ZTc1ZDIxMzg1OGE1ZjYyOQ==:ODg2MjM4MWEtMWU2Mi00Nw==, udp: true, tfo: true}
+  - {name: TW Akari 03 @SubscriptionShare, server: 27.150.132.116, port: 3046, type: ss, cipher: rc4-md5, password: RenzheCloudSS, plugin: obfs, plugin-opts: {mode: http, host: d1bf8290613.microsoft.com}, udp: true, tfo: true}
+  - {name: AU Akari 01 @SubscriptionShare, server: 27.150.132.117, port: 5610, type: ss, cipher: rc4-md5, password: RenzheCloudSS, plugin: obfs, plugin-opts: {mode: http, host: d1bf8290613.microsoft.com}, udp: true, tfo: true}
+  - {name: CA ELIXIOR 01 @SubscriptionShare, server: 23.132.28.28, port: 25200, type: hysteria2, password: 29eec861-f061-4a86-9e38-fbf55126c756, sni: xjp.kaixincloud.top, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: CY WorkTitans 01 @SubscriptionShare, server: 45.83.20.206, port: 443, type: ss, cipher: chacha20-ietf-poly1305, password: g5RQoxQuVtnFv3Xxsa8edPisXNPnyWKy, udp: true, tfo: true}
+  - {name: DE Itm 01 @SubscriptionShare, server: 5.83.129.31, port: 25200, type: hysteria2, password: 29eec861-f061-4a86-9e38-fbf55126c756, sni: rb.kaixincloud.top, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: DE Itm 02 @SubscriptionShare, server: 5.178.101.232, port: 25200, type: hysteria2, password: 29eec861-f061-4a86-9e38-fbf55126c756, sni: dg.kaixincloud.top, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: DE Freakhosting 03 @SubscriptionShare, server: 143.20.37.25, port: 25200, type: hysteria2, password: 29eec861-f061-4a86-9e38-fbf55126c756, sni: yg.kaixincloud.top, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: DE netcup 04 @SubscriptionShare, server: 104.18.2.157, port: 443, type: vless, tls: true, packet-encoding: xudp, uuid: 29eec861-f061-4a86-9e38-fbf55126c756, servername: mnzagchfrmjw.xilucloud.top, network: ws, ws-opts: {path: /ai, headers: {Host: mnzagchfrmjw.xilucloud.top}}, reality-opts: {public-key: zWY5WwfH-Q8xvLZAr28WjRVk05L4WCp4B7F1lWPM0A8, short-id: c1839f26}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: GB WorkTitans 01 @SubscriptionShare, server: 45.14.245.2, port: 443, type: ss, cipher: chacha20-ietf-poly1305, password: 17ZDORWIliQHuO6WRGHChXYMzdRtAYVP, udp: true, tfo: true}
+  - {name: KR ORACLE 01 @SubscriptionShare, server: 103.181.165.243, port: 26074, type: vmess, uuid: e3539c1c-e32d-305e-96b2-3c184b644a90, alterId: 0, cipher: auto, tls: false, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: KR AMAZON 02 @SubscriptionShare, server: 3.35.14.144, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: zWY5WwfH-Q8xvLZAr28WjRVk05L4WCp4B7F1lWPM0A8, short-id: c1839f26}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: KR AMAZON 03 @SubscriptionShare, server: 183.236.97.150, port: 40386, type: ss, cipher: 2022-blake3-aes-128-gcm, password: ZTc1ZDIxMzg1OGE1ZjYyOQ==:ODg2MjM4MWEtMWU2Mi00Nw==, udp: true, tfo: true}
+  - {name: KR AMAZON 04 @SubscriptionShare, server: 43.203.210.208, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: www.walmart.com, network: grpc, grpc-opts: {grpc-mode: gun, grpc-service-name: bby}, reality-opts: {public-key: IllHH4k1x34LP2g6PJPd5-p__kNMRL0-Xq0VSli59mM, short-id: 83dd2e7b}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: MD ''it 01 @SubscriptionShare, server: 185.153.197.5, port: 989, type: ss, cipher: aes-256-cfb, password: f8f7aCzcPKbsF8p3, udp: true, tfo: true}
+  - {name: RU JSC 01 @SubscriptionShare, server: 193.104.57.136, port: 40000, type: vless, tls: true, packet-encoding: xudp, uuid: 8862381a-1e62-47a1-b33e-921eb1f2c14e, servername: 400567.xyz, path: /, flow: xtls-rprx-vision, reality-opts: {public-key: IllHH4k1x34LP2g6PJPd5-p__kNMRL0-Xq0VSli59mM, short-id: 83dd2e7b}, client-fingerprint: random, skip-cert-verify: true, udp: true, tfo: true}
+  - {name: Unknown AMAZON 01 @SubscriptionShare, server: 183.236.97.191, port: 40381, type: ss, cipher: 2022-blake3-aes-128-gcm, password: ZTc1ZDIxMzg1OGE1ZjYyOQ==:MmRjYmJmY2QtOGJjZC00OA==, udp: true, tfo: true}
+  - {name: VN VIETPN 01 @SubscriptionShare, server: 103.186.154.253, port: 38388, type: ss, cipher: aes-256-cfb, password: Xn8jKdmDM00IeO%#$#fJAMtsEAEUOpH/YWYtYqDFnT0SV, udp: true, tfo: true}
+  - {name: VN VIETPN 02 @SubscriptionShare, server: 103.186.155.118, port: 38388, type: ss, cipher: aes-256-cfb, password: Xn8jKdmDM00IeO%#$#fJAMtsEAEUOpH/YWYtYqDFnT0SV, udp: true, tfo: true}
+proxy-groups:
+  - {name: Proxy, type: select, proxies: [Auto, DIRECT, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan, HK AMAZON 01 @SubscriptionShare, HK Vertex 02 @SubscriptionShare, HK DMIT 03 @SubscriptionShare, HK AMAZON 04 @SubscriptionShare, HK AMAZON 05 @SubscriptionShare, HK CUSTOMER 06 @SubscriptionShare, HK AMAZON 07 @SubscriptionShare, HK AMAZON 08 @SubscriptionShare, HK HKT 09 @SubscriptionShare, HK AMAZON 10 @SubscriptionShare, HK AMAZON 11 @SubscriptionShare, HK AMAZON 12 @SubscriptionShare, HK AMAZON 13 @SubscriptionShare, HK AMAZON 14 @SubscriptionShare, HK AMAZON 15 @SubscriptionShare, HK AMAZON 16 @SubscriptionShare, HK AMAZON 17 @SubscriptionShare, HK AMAZON 18 @SubscriptionShare, HK AMAZON 19 @SubscriptionShare, HK AMAZON 20 @SubscriptionShare, SG AMAZON 01 @SubscriptionShare, SG Akamai 02 @SubscriptionShare, SG Akari 03 @SubscriptionShare, SG AMAZON 04 @SubscriptionShare, SG AMAZON 05 @SubscriptionShare, SG AMAZON 06 @SubscriptionShare, SG AMAZON 07 @SubscriptionShare, SG ORACLE 08 @SubscriptionShare, SG AMAZON 09 @SubscriptionShare, SG Amazon 10 @SubscriptionShare, SG AMAZON 11 @SubscriptionShare, SG AMAZON 12 @SubscriptionShare, SG AMAZON 13 @SubscriptionShare, SG AMAZON 14 @SubscriptionShare, JP AMAZON 01 @SubscriptionShare, JP AMAZON 02 @SubscriptionShare, JP SKY 03 @SubscriptionShare, JP AMAZON 04 @SubscriptionShare, JP Akari 05 @SubscriptionShare, JP AMAZON 06 @SubscriptionShare, JP AMAZON 07 @SubscriptionShare, JP AMAZON 08 @SubscriptionShare, JP AMAZON 09 @SubscriptionShare, JP Amazon 10 @SubscriptionShare, JP AMAZON 11 @SubscriptionShare, JP NTT 12 @SubscriptionShare, JP Akamai 13 @SubscriptionShare, JP AMAZON 14 @SubscriptionShare, JP AMAZON 15 @SubscriptionShare, JP AMAZON 16 @SubscriptionShare, JP AMAZON 17 @SubscriptionShare, JP AMAZON 18 @SubscriptionShare, JP AMAZON 19 @SubscriptionShare, JP AMAZON 20 @SubscriptionShare, US VCL 01 @SubscriptionShare, US AMAZON 02 @SubscriptionShare, US AS 03 @SubscriptionShare, US AMAZON 04 @SubscriptionShare, US AS 05 @SubscriptionShare, US MULTA 06 @SubscriptionShare, US ORACLE 07 @SubscriptionShare, US Amazon 08 @SubscriptionShare, US AMAZON 09 @SubscriptionShare, US AMAZON 10 @SubscriptionShare, US AMAZON 11 @SubscriptionShare, US AMAZON 12 @SubscriptionShare, US AMAZON 13 @SubscriptionShare, US AMAZON 14 @SubscriptionShare, US BrainStorm 15 @SubscriptionShare, TW DCBG 01 @SubscriptionShare, TW DCBG 02 @SubscriptionShare, TW Akari 03 @SubscriptionShare, AU Akari 01 @SubscriptionShare, CA ELIXIOR 01 @SubscriptionShare, CY WorkTitans 01 @SubscriptionShare, DE Itm 01 @SubscriptionShare, DE Itm 02 @SubscriptionShare, DE Freakhosting 03 @SubscriptionShare, DE netcup 04 @SubscriptionShare, GB WorkTitans 01 @SubscriptionShare, KR ORACLE 01 @SubscriptionShare, KR AMAZON 02 @SubscriptionShare, KR AMAZON 03 @SubscriptionShare, KR AMAZON 04 @SubscriptionShare, MD ''it 01 @SubscriptionShare, RU JSC 01 @SubscriptionShare, Unknown AMAZON 01 @SubscriptionShare, VN VIETPN 01 @SubscriptionShare, VN VIETPN 02 @SubscriptionShare]}
+  - {name: Auto, type: fallback, url: http://connectivitycheck.gstatic.com/generate_204, interval: 300, proxies: [HK AMAZON 01 @SubscriptionShare, HK Vertex 02 @SubscriptionShare, HK DMIT 03 @SubscriptionShare, HK AMAZON 04 @SubscriptionShare, HK AMAZON 05 @SubscriptionShare, HK CUSTOMER 06 @SubscriptionShare, HK AMAZON 07 @SubscriptionShare, HK AMAZON 08 @SubscriptionShare, HK HKT 09 @SubscriptionShare, HK AMAZON 10 @SubscriptionShare, HK AMAZON 11 @SubscriptionShare, HK AMAZON 12 @SubscriptionShare, HK AMAZON 13 @SubscriptionShare, HK AMAZON 14 @SubscriptionShare, HK AMAZON 15 @SubscriptionShare, HK AMAZON 16 @SubscriptionShare, HK AMAZON 17 @SubscriptionShare, HK AMAZON 18 @SubscriptionShare, HK AMAZON 19 @SubscriptionShare, HK AMAZON 20 @SubscriptionShare, SG AMAZON 01 @SubscriptionShare, SG Akamai 02 @SubscriptionShare, SG Akari 03 @SubscriptionShare, SG AMAZON 04 @SubscriptionShare, SG AMAZON 05 @SubscriptionShare, SG AMAZON 06 @SubscriptionShare, SG AMAZON 07 @SubscriptionShare, SG ORACLE 08 @SubscriptionShare, SG AMAZON 09 @SubscriptionShare, SG Amazon 10 @SubscriptionShare, SG AMAZON 11 @SubscriptionShare, SG AMAZON 12 @SubscriptionShare, SG AMAZON 13 @SubscriptionShare, SG AMAZON 14 @SubscriptionShare, JP AMAZON 01 @SubscriptionShare, JP AMAZON 02 @SubscriptionShare, JP SKY 03 @SubscriptionShare, JP AMAZON 04 @SubscriptionShare, JP Akari 05 @SubscriptionShare, JP AMAZON 06 @SubscriptionShare, JP AMAZON 07 @SubscriptionShare, JP AMAZON 08 @SubscriptionShare, JP AMAZON 09 @SubscriptionShare, JP Amazon 10 @SubscriptionShare, JP AMAZON 11 @SubscriptionShare, JP NTT 12 @SubscriptionShare, JP Akamai 13 @SubscriptionShare, JP AMAZON 14 @SubscriptionShare, JP AMAZON 15 @SubscriptionShare, JP AMAZON 16 @SubscriptionShare, JP AMAZON 17 @SubscriptionShare, JP AMAZON 18 @SubscriptionShare, JP AMAZON 19 @SubscriptionShare, JP AMAZON 20 @SubscriptionShare, US VCL 01 @SubscriptionShare, US AMAZON 02 @SubscriptionShare, US AS 03 @SubscriptionShare, US AMAZON 04 @SubscriptionShare, US AS 05 @SubscriptionShare, US MULTA 06 @SubscriptionShare, US ORACLE 07 @SubscriptionShare, US Amazon 08 @SubscriptionShare, US AMAZON 09 @SubscriptionShare, US AMAZON 10 @SubscriptionShare, US AMAZON 11 @SubscriptionShare, US AMAZON 12 @SubscriptionShare, US AMAZON 13 @SubscriptionShare, US AMAZON 14 @SubscriptionShare, US BrainStorm 15 @SubscriptionShare, TW DCBG 01 @SubscriptionShare, TW DCBG 02 @SubscriptionShare, TW Akari 03 @SubscriptionShare, AU Akari 01 @SubscriptionShare, CA ELIXIOR 01 @SubscriptionShare, CY WorkTitans 01 @SubscriptionShare, DE Itm 01 @SubscriptionShare, DE Itm 02 @SubscriptionShare, DE Freakhosting 03 @SubscriptionShare, DE netcup 04 @SubscriptionShare, GB WorkTitans 01 @SubscriptionShare, KR ORACLE 01 @SubscriptionShare, KR AMAZON 02 @SubscriptionShare, KR AMAZON 03 @SubscriptionShare, KR AMAZON 04 @SubscriptionShare, MD ''it 01 @SubscriptionShare, RU JSC 01 @SubscriptionShare, Unknown AMAZON 01 @SubscriptionShare, VN VIETPN 01 @SubscriptionShare, VN VIETPN 02 @SubscriptionShare]}
+  - {name: Apple, type: select, proxies: [Proxy, DIRECT, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: BiliBili, type: select, proxies: [Proxy, DIRECT, Auto, 🇭🇰 Hong Kong, 🇨🇳 Taiwan]}
+  - {name: Netflix, type: select, proxies: [Proxy, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: Disney, type: select, proxies: [Proxy, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: YouTube, type: select, proxies: [Proxy, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: TikTok, type: select, proxies: [Proxy, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: GlobalMedia, type: select, proxies: [Proxy, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: OpenAI, type: select, proxies: [Proxy, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: Google, type: select, proxies: [Proxy, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: Microsoft, type: select, proxies: [Proxy, DIRECT, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: Steam, type: select, proxies: [Proxy, DIRECT, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: PayPal, type: select, proxies: [Proxy, DIRECT, Auto, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: Telegram, type: select, proxies: [Proxy, 🇭🇰 Hong Kong, 🇸🇬 Singapore, 🇯🇵 Japan, 🇺🇸 United States, 🇨🇳 Taiwan]}
+  - {name: Lan, type: select, proxies: [Proxy, Auto, DIRECT]}
+  - {name: ChinaMax, type: select, proxies: [Proxy, Auto, DIRECT]}
+  - {name: Final, type: select, proxies: [Proxy, Auto, DIRECT]}
+  - {name: 🇭🇰 Hong Kong, type: url-test, url: http://connectivitycheck.gstatic.com/generate_204, interval: 300, proxies: [HK AMAZON 01 @SubscriptionShare, HK Vertex 02 @SubscriptionShare, HK DMIT 03 @SubscriptionShare, HK AMAZON 04 @SubscriptionShare, HK AMAZON 05 @SubscriptionShare, HK CUSTOMER 06 @SubscriptionShare, HK AMAZON 07 @SubscriptionShare, HK AMAZON 08 @SubscriptionShare, HK HKT 09 @SubscriptionShare, HK AMAZON 10 @SubscriptionShare, HK AMAZON 11 @SubscriptionShare, HK AMAZON 12 @SubscriptionShare, HK AMAZON 13 @SubscriptionShare, HK AMAZON 14 @SubscriptionShare, HK AMAZON 15 @SubscriptionShare, HK AMAZON 16 @SubscriptionShare, HK AMAZON 17 @SubscriptionShare, HK AMAZON 18 @SubscriptionShare, HK AMAZON 19 @SubscriptionShare, HK AMAZON 20 @SubscriptionShare]}
+  - {name: 🇸🇬 Singapore, type: url-test, url: http://connectivitycheck.gstatic.com/generate_204, interval: 300, proxies: [SG AMAZON 01 @SubscriptionShare, SG Akamai 02 @SubscriptionShare, SG Akari 03 @SubscriptionShare, SG AMAZON 04 @SubscriptionShare, SG AMAZON 05 @SubscriptionShare, SG AMAZON 06 @SubscriptionShare, SG AMAZON 07 @SubscriptionShare, SG ORACLE 08 @SubscriptionShare, SG AMAZON 09 @SubscriptionShare, SG Amazon 10 @SubscriptionShare, SG AMAZON 11 @SubscriptionShare, SG AMAZON 12 @SubscriptionShare, SG AMAZON 13 @SubscriptionShare, SG AMAZON 14 @SubscriptionShare]}
+  - {name: 🇯🇵 Japan, type: url-test, url: http://connectivitycheck.gstatic.com/generate_204, interval: 300, proxies: [JP AMAZON 01 @SubscriptionShare, JP AMAZON 02 @SubscriptionShare, JP SKY 03 @SubscriptionShare, JP AMAZON 04 @SubscriptionShare, JP Akari 05 @SubscriptionShare, JP AMAZON 06 @SubscriptionShare, JP AMAZON 07 @SubscriptionShare, JP AMAZON 08 @SubscriptionShare, JP AMAZON 09 @SubscriptionShare, JP Amazon 10 @SubscriptionShare, JP AMAZON 11 @SubscriptionShare, JP NTT 12 @SubscriptionShare, JP Akamai 13 @SubscriptionShare, JP AMAZON 14 @SubscriptionShare, JP AMAZON 15 @SubscriptionShare, JP AMAZON 16 @SubscriptionShare, JP AMAZON 17 @SubscriptionShare, JP AMAZON 18 @SubscriptionShare, JP AMAZON 19 @SubscriptionShare, JP AMAZON 20 @SubscriptionShare]}
+  - {name: 🇺🇸 United States, type: url-test, url: http://connectivitycheck.gstatic.com/generate_204, interval: 300, proxies: [HK CUSTOMER 06 @SubscriptionShare, US VCL 01 @SubscriptionShare, US AMAZON 02 @SubscriptionShare, US AS 03 @SubscriptionShare, US AMAZON 04 @SubscriptionShare, US AS 05 @SubscriptionShare, US MULTA 06 @SubscriptionShare, US ORACLE 07 @SubscriptionShare, US Amazon 08 @SubscriptionShare, US AMAZON 09 @SubscriptionShare, US AMAZON 10 @SubscriptionShare, US AMAZON 11 @SubscriptionShare, US AMAZON 12 @SubscriptionShare, US AMAZON 13 @SubscriptionShare, US AMAZON 14 @SubscriptionShare, US BrainStorm 15 @SubscriptionShare]}
+  - {name: 🇨🇳 Taiwan, type: url-test, url: http://connectivitycheck.gstatic.com/generate_204, interval: 300, proxies: [TW DCBG 01 @SubscriptionShare, TW DCBG 02 @SubscriptionShare, TW Akari 03 @SubscriptionShare]}
+rules:
+  - RULE-SET,Apple_Classical_No_Resolve,Apple
+  - RULE-SET,BiliBili_No_Resolve,BiliBili
+  - RULE-SET,Netflix_No_Resolve,Netflix
+  - RULE-SET,Disney_No_Resolve,Disney
+  - RULE-SET,YouTube_No_Resolve,YouTube
+  - RULE-SET,TikTok_No_Resolve,TikTok
+  - RULE-SET,GlobalMedia_Classical_No_Resolve,GlobalMedia
+  - RULE-SET,OpenAI_No_Resolve,OpenAI
+  - RULE-SET,Google_No_Resolve,Google
+  - RULE-SET,Microsoft_No_Resolve,Microsoft
+  - RULE-SET,PayPal_No_Resolve,PayPal
+  - RULE-SET,Telegram_No_Resolve,Telegram
+  - RULE-SET,Steam_No_Resolve,Steam
+  - RULE-SET,Lan_No_Resolve,Lan
+  - RULE-SET,ChinaMax_Classical_No_IPv6_No_Resolve,ChinaMax
+  - MATCH,Final
+rule-providers:
+  Apple_Classical_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple_Classical_No_Resolve.yaml
+    path: ./providers/1382714063091383325.yaml
+    interval: 86400
+  BiliBili_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili_No_Resolve.yaml
+    path: ./providers/15427680467615148193.yaml
+    interval: 86400
+  Netflix_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix_No_Resolve.yaml
+    path: ./providers/3095517576045242515.yaml
+    interval: 86400
+  Disney_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney_No_Resolve.yaml
+    path: ./providers/16730261648837664781.yaml
+    interval: 86400
+  YouTube_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube_No_Resolve.yaml
+    path: ./providers/7793569929749877519.yaml
+    interval: 86400
+  TikTok_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok_No_Resolve.yaml
+    path: ./providers/11554982043438683725.yaml
+    interval: 86400
+  GlobalMedia_Classical_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/GlobalMedia/GlobalMedia_Classical_No_Resolve.yaml
+    path: ./providers/8586276791519100849.yaml
+    interval: 86400
+  OpenAI_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI_No_Resolve.yaml
+    path: ./providers/10003867553944401341.yaml
+    interval: 86400
+  Google_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google_No_Resolve.yaml
+    path: ./providers/6866317176011189215.yaml
+    interval: 86400
+  Microsoft_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft_No_Resolve.yaml
+    path: ./providers/5985473173379392979.yaml
+    interval: 86400
+  PayPal_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal_No_Resolve.yaml
+    path: ./providers/15088493651586754751.yaml
+    interval: 86400
+  Telegram_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram_No_Resolve.yaml
+    path: ./providers/1666671147171134695.yaml
+    interval: 86400
+  Steam_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam_No_Resolve.yaml
+    path: ./providers/185371531745484315.yaml
+    interval: 86400
+  Lan_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan_No_Resolve.yaml
+    path: ./providers/1243614840536111263.yaml
+    interval: 86400
+  ChinaMax_Classical_No_IPv6_No_Resolve:
+    type: http
+    behavior: classical
+    url: https://raw.gitmirror.com/blackmatrix7/ios_rule_script/master/rule/Clash/ChinaMax/ChinaMax_Classical_No_IPv6_No_Resolve.yaml
+    path: ./providers/15219913603349139099.yaml
+    interval: 86400
